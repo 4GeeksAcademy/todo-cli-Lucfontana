@@ -87,8 +87,33 @@ def load_tasks_from_csv(file_name):
             if task_name:
                 loaded_tasks.append(task_name)
 
-    tasks = loaded_tasks
-    print(f"Se cargaron {len(tasks)} tareas desde {file_name}")
+    if tasks:
+        print("Ya hay tareas cargadas en memoria")
+        print("1- Combinar listas")
+        print("2- Priorizar archivo (reemplazar lista actual)")
+        print("3- Cancelar")
+
+        while True:
+            action = input("Elige una opción (1, 2 o 3): ").strip()
+
+            if action == "1":
+                tasks.extend(loaded_tasks)
+                print(
+                    f"Se combinaron listas. Total actual: {len(tasks)} tareas"
+                )
+                break
+            if action == "2":
+                tasks = loaded_tasks
+                print(f"Se cargaron {len(tasks)} tareas desde {file_name}")
+                break
+            if action == "3":
+                print("Carga de tareas cancelada")
+                break
+
+            print("Opción inválida. Ingresa 1, 2 o 3")
+    else:
+        tasks = loaded_tasks
+        print(f"Se cargaron {len(tasks)} tareas desde {file_name}")
 
 
 while True:
